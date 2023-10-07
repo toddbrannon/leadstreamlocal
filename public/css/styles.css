@@ -1,7 +1,7 @@
 /* css/styles.css */
 html, body {
     height: 100%;
-    font-family: 'Montserrat', sans-serif;
+}
 
 /* ... existing styles ... */
 
@@ -92,7 +92,7 @@ body, .navbar, .masthead {
 .navbar-brand {
     font-size: 1.5em;
     font-weight: bold;
-    transition: all 0.3s ease-in-out;
+    transition: color 0.3s ease-in-out;
 }
 
 .container-main {
@@ -220,26 +220,42 @@ body, .navbar, .masthead {
     flex: 1;
 }
 
-.masthead {
-    background: linear-gradient(90deg, #5dd382, #005ca1);
-    color: #ffffff;  /* Sets the text color to white for better visibility */
-    background-repeat: no-repeat;
-    background-attachment: scroll;
-    background-position: center center;
-    background-size: cover;
-    position: relative;
-    min-height: 82vh;  /* Ensures the masthead fills the viewport */
-    height: calc(100% - 120px);
-    overflow-y: auto; /* Enables scrolling within masthead if content overflows */
-    flex-grow: 1; /* Allows masthead to grow and take up available space */
+.header-container {
+    display: flex;
+    align-items: center;
+    background-color: transparent!important; /* Default background color */
 }
 
-.overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background-color: #fff;
-    opacity: 0.2;
+.left-section {
+    flex: 1;
+    background-color: #2c8bb0!important;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.tagline {
+    font-family: 'League Spartan', sans-serif;
+    font-size: 7.5em;
+    font-weight: bold;
+    line-height: .8;
+    text-align: left;
+    margin-top: 1.5em;
+    margin-bottom: 20px; /* Adjust spacing between tagline and image */
+}
+
+.header-image {
+    width: 80%; /* Adjust as necessary */
+    height: auto;
+    display: block;
+    margin: 0 auto; /* Center the image */
+}
+
+.right-section {
+    flex: 1;
+    background-color: #2bb7ba!important;
+    /* Other styling for right section */
 }
