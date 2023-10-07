@@ -18,8 +18,6 @@ app.set('view engine', 'ejs');
 // Set the views directory
 app.set('views', './views');
 
-
-
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(session({
@@ -27,6 +25,18 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
 }));
+
+// Set up session middleware
+app.use(session({
+    secret: 'mysecret',
+    resave: false,
+    saveUninitialized: false
+  }));
+
+app.use((req, res, next) => {
+    res.locals.currentRoute = req.originalUrl;
+    next();
+  });
 
 app.use('/', index_routes);  // Integrate the routes
 

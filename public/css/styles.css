@@ -1,12 +1,73 @@
 /* css/styles.css */
 html, body {
     height: 100%;
+    font-family: 'Montserrat', sans-serif;
+
+/* ... existing styles ... */
+
+.features-section .card.feature-box {
+    border: none; /* Removes border */
+    border-radius: 0; /* Removes rounding of corners */
+    box-shadow: none; /* Removes shadow */
+    background: none; /* Removes background color */
 }
 
-body {
-    background-color: #f4f4f4;
-    font-family: 'Roboto', sans-serif;
+.features-section .card.feature-box .card-body {
+    padding: 0; /* Removes padding */
 }
+
+.features-section .card.feature-box .card-title,
+.features-section .card.feature-box .card-text {
+    color: #333; /* Adjusts text color */
+}
+
+/* ... */
+
+
+.hero-section {
+    background-color: #2034AF; /* Darker shade of blue */
+    /* padding: 3rem 0; */
+    position: relative;
+}
+
+.features-section .feature-box h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.trial-offer-section {
+    background-color: #f0f0f0; /* Lighter background */
+}
+
+.signup-section {
+    background-color: #ffffff;
+    padding: 60px 0;
+}
+
+/* styles.css */
+.features-section {
+    padding: 60px 0;
+    background-color: #f9f9f9;
+}
+
+.features-section h1,
+.features-section p {
+    margin-bottom: 20px;
+}
+
+.feature-box {
+    margin-bottom: 30px;
+}
+
+.feature-box h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.feature-box p {
+    color: #555;
+}
+
 
 /* Add to your styles.css */
 body, .navbar, .masthead {
@@ -28,6 +89,12 @@ body, .navbar, .masthead {
     flex-shrink: 0; /* Prevents navbar from shrinking */
 }
 
+.navbar-brand {
+    font-size: 1.5em;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+}
+
 .container-main {
     display: flex;
     flex-direction: column;
@@ -40,24 +107,103 @@ body, .navbar, .masthead {
 
 /* In your styles.css file */
 .navbar-transparent {
-    background-color: transparent!important;
-    border: none!important;
+    background-color: #fff!important;
+    border: #fff!important;
     box-shadow: none!important;
 }
 
+.navbar {
+    background-color: #fff!important;
+    padding-bottom: 8px;
+}
+
+.navbar-brand {
+    color: #2bb7ba
+}
+
 .footer {
-    background-color: #007BFF!important;
+    background-color: #005ca1!important;
     color: #FFFFFF!important;
     padding-top: 2em;
+    flex-shrink: 0; /* Prevents footer from shrinking */
+    width: 100%;
 }
 
 .navbar.navbar-light.bg-light {
     color: #ffffff !important;
 }
 
+.signin-link {
+    color: #5dd382;
+    transition: color 0.3s ease-in-out;
+}
+
+.signin-link:hover {
+    color: #005ca1;
+}
+
 .btn-primary {
-    background-color: #FF7F50;
-    border-color: #FF7F50;
+    background-color: #fff;
+    border-color: #B11A5D;
+    border-width: 2px;
+    color: #B11A5D;
+    transition: color 0.3s ease-in-out;
+}
+
+.btn-nav {
+    background-color: #fff;
+    border-color: #005ca1;
+    border-width: 2px;
+    color: #005ca1;
+    transition: color 0.3s ease-in-out;
+}
+.btn-nav:hover {
+    background-color: #fff;
+    border-color: #2bb7ba;
+    border-width: 2px;
+    color: #2bb7ba;
+}
+
+.btn-hero {
+    background-color: #fff;
+    border-color: #005ca1;
+    border-width: 2px;
+    color: #005ca1;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-hero:hover {
+    background-color: #2c8bb0!important;
+    border-color: #fff!important;
+    border-width: 2px;
+    color: #fff!important;
+}
+
+.btn-signup-submit {
+    background-color: #fff;
+    border-color: #005ca1;
+    border-width: 2px;
+    color: #005ca1;
+    transition: color 0.3s ease-in-out;
+}
+
+.btn-signup-submit:hover {
+    background-color: #2c8bb0!important;
+    border-color: #fff!important;
+    border-width: 2px;
+    color: #fff!important;
+}
+
+.container-get-started {
+    background: linear-gradient(90deg, #5dd382, #005ca1);
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: #75777B;
+    border-color: #F59144;
+    border-width: 2px;
+    color: #fff;
 }
 
 .navbar, .footer {
@@ -75,7 +221,7 @@ body, .navbar, .masthead {
 }
 
 .masthead {
-    background: linear-gradient(45deg, #007BFF, #FF7F50);
+    background: linear-gradient(90deg, #5dd382, #005ca1);
     color: #ffffff;  /* Sets the text color to white for better visibility */
     background-repeat: no-repeat;
     background-attachment: scroll;
@@ -88,20 +234,12 @@ body, .navbar, .masthead {
     flex-grow: 1; /* Allows masthead to grow and take up available space */
 }
 
-
 .overlay {
     position: absolute;
     top: 0;
     left: 0;
     height: 100%;
     width: 100%;
-    background-color: #000;
-    opacity: 0.5;
+    background-color: #fff;
+    opacity: 0.2;
 }
-
-
-.footer {
-    flex-shrink: 0; /* Prevents footer from shrinking */
-    width: 100%;
-}
-
