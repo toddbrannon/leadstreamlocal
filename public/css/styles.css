@@ -3,17 +3,34 @@ html, body {
     height: 100%;
 }
 
-/* ... existing styles ... */
-
-.features-section .card.feature-box {
-    border: none; /* Removes border */
-    border-radius: 0; /* Removes rounding of corners */
-    box-shadow: none; /* Removes shadow */
-    background: none; /* Removes background color */
+.features-section .feature-box h2 {
+    font-family: 'League Spartan', sans-serif;
+    font-size: 1.65em!important;
+    font-weight: bold;
 }
 
-.features-section .card.feature-box .card-body {
-    padding: 0; /* Removes padding */
+.features-section .feature-box p {
+    font-family: 'League Spartan', sans-serif;
+    font-size: 1.25em!important;
+}
+
+.features-section .row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.features-section .col-md-4 {
+    display: flex;
+}
+
+.features-section .feature-box {
+    padding: 20px; /* Adds padding */
+    border: 2px solid #005ca1; /* Adds border */
+    border-radius: 5px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .features-section .card.feature-box .card-title,
@@ -28,11 +45,6 @@ html, body {
     background-color: #2034AF; /* Darker shade of blue */
     /* padding: 3rem 0; */
     position: relative;
-}
-
-.features-section .feature-box h2 {
-    font-size: 28px;
-    margin-bottom: 10px;
 }
 
 .trial-offer-section {
@@ -59,11 +71,6 @@ html, body {
     margin-bottom: 30px;
 }
 
-.feature-box h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
-}
-
 .feature-box p {
     color: #555;
 }
@@ -87,6 +94,8 @@ body, .navbar, .masthead {
     padding-right: 2em;
     padding-top: .5em;
     flex-shrink: 0; /* Prevents navbar from shrinking */
+    background-color: #fff!important;
+    padding-bottom: 8px;
 }
 
 .navbar-brand {
@@ -112,11 +121,6 @@ body, .navbar, .masthead {
     box-shadow: none!important;
 }
 
-.navbar {
-    background-color: #fff!important;
-    padding-bottom: 8px;
-}
-
 .navbar-brand {
     color: #2bb7ba
 }
@@ -140,14 +144,6 @@ body, .navbar, .masthead {
 
 .signin-link:hover {
     color: #005ca1;
-}
-
-.btn-primary {
-    background-color: #fff;
-    border-color: #B11A5D;
-    border-width: 2px;
-    color: #B11A5D;
-    transition: color 0.3s ease-in-out;
 }
 
 .btn-nav {
@@ -228,7 +224,7 @@ body, .navbar, .masthead {
 
 .left-section {
     flex: 1;
-    background-color: #2c8bb0!important;
+    background: linear-gradient(45deg, #5dd382, #2c8bb0);
     color: #fff;
     display: flex;
     flex-direction: column;
@@ -256,6 +252,25 @@ body, .navbar, .masthead {
 
 .right-section {
     flex: 1;
-    background-color: #2bb7ba!important;
-    /* Other styling for right section */
+    display: flex;
+    background-color: #beffc929!important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
 }
+
+.features-top h1 {
+    font-family: 'League Spartan', sans-serif;
+    font-size: 6em;
+    font-weight: bold;
+}
+
+.features-top p {
+    font-family: 'League Spartan', sans-serif;
+    font-size: 1.5em;
+}
+
+
+
+
