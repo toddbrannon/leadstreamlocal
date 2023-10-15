@@ -43,6 +43,9 @@ html, body {
 
 .hero-section {
     background-color: #2034AF; /* Darker shade of blue */
+    opacity: .75;
+    padding-top: 105px;
+    padding-bottom: 65px;
     /* padding: 3rem 0; */
     position: relative;
 }
@@ -223,7 +226,7 @@ body, .navbar, .masthead {
 }
 
 .left-section {
-    flex: 1;
+    flex: 1.25;
     background: linear-gradient(45deg, #5dd382, #2c8bb0);
     color: #fff;
     display: flex;
@@ -251,7 +254,7 @@ body, .navbar, .masthead {
 }
 
 .right-section {
-    flex: 1;
+    flex: .75;
     display: flex;
     background-color: #beffc929!important;
     flex-direction: column;
