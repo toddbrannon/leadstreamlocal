@@ -5,6 +5,7 @@ const session = require('express-session');
 const path = require('path');
 const index_routes = require('./routes/index_router');  // Import the routes
 const auth_routes = require('./routes/auth_router');  // Import the auth routes
+require('dotenv').config();
 
 const mongoose = require('mongoose');
 

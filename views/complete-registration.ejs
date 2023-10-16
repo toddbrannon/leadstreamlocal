@@ -1,0 +1,74 @@
+<%- include('partials/header') %>
+
+<div class="page-container h-100">
+    <!-- <section class="signup-section py-5"> -->
+        <div class="container-get-started py-5 h-100">
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <form action="/auth/complete-registration" method="POST" class="signup-form w-50 mx-auto" onsubmit="return validateForm()">
+                        <h1 class="text-center pt-5">Complete Your Registration</h1>
+                        <h4 class="text-center pb-3">by selecting a username and password:</h4>
+                        
+                        <div class="form-group d-flex flex-column align-items-center">
+                          <label for="username" class="w-50">Username</label>
+                          <input type="text" class="form-control w-50" id="username" name="username" pattern="[A-Za-z0-9]{6,12}" required>
+                          <small id="usernameHelp" class="form-text w-50">Username must be 6-12 characters long and may contain letters and numbers only.</small>
+                        </div>
+                        
+                        <div class="form-group d-flex flex-column align-items-start w-50 mx-auto">
+                          <label for="password">Password</label>
+                          <input type="password" class="form-control" id="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
+                          <div class="form-check form-check-inline mt-2">
+                              <input type="checkbox" class="form-check-input" id="showPassword" onclick="togglePasswordVisibility()">
+                              <label class="form-check-label" for="showPassword">Show Password</label>
+                          </div>
+                          <small id="passwordHelp" class="form-text">Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, and one number.</small>
+                        </div>
+                      
+                      
+                      
+                        
+                        <div class="form-group d-flex flex-column align-items-center">
+                            <label for="confirmPassword" class="w-50">Confirm Password</label>
+                            <input type="password" class="form-control w-50" id="confirmPassword" name="confirmPassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
+                        </div>
+                        
+                        <div class="d-flex justify-content-center">
+                            <button type="submit" class="btn btn-primary btn-signup-submit">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    <!-- </section> -->
+</div>
+
+<script>
+    function togglePasswordVisibility() {
+        var password = document.getElementById("password");
+        if (password.type === "password") {
+            password.type = "text";
+        } else {
+            password.type = "password";
+        }
+    }
+  
+</script>
+
+<script type="text/javascript">
+  function validateForm() {
+      var password = document.getElementById("password").value;
+      var confirmPassword = document.getElementById("confirmPassword").value;
+      
+      if (password !== confirmPassword) {
+          alert("Passwords do not match.");
+          return false;
+      }
+      
+      // Further validation can go here
+      
+      return true;
+  }
+</script>
+
+<%- include('partials/footer') %>

@@ -69,3 +69,12 @@ docker-compose up --build
 ```
 
 This setup assumes a simplistic application structure and might need adjustments to fit your project's structure and requirements better.
+
+
+**you can run your tests with the mocha command:**
+
+```bash
+npx mocha tests/**/*.js
+```
+
+This will run all files in the tests directory (and all subdirectories) that match the pattern *.js.

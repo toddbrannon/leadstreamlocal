@@ -12,7 +12,8 @@ const UserSchema = new mongoose.Schema({
     title: String,
     email: { type: String, unique: true },
     phone: String,
-    password: String,
+    username: { type: String, default: null },
+    password: { type: String, default: null },
     registration_complete: { type: Boolean, default: false }
 });
 

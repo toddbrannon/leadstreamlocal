@@ -6,6 +6,7 @@ const crypto = require('crypto');
 const User = require('../models/user.js');
 const app = express();
 const nodemailer = require('nodemailer');
+const { check, validationResult } = require('express-validator');
 const router = express.Router();
 
 
@@ -49,11 +50,11 @@ router.post('/register', async (req, res) => {
                 <p>Hi ${firstName} ${lastName}!</p>
                 <p>Thank you for signing up at Lead Stream Local. To complete your registration and enjoy all the features, please confirm your email address by clicking the button below:</p>
         
-                <a href="http://localhost:3000/confirm_email?email=${email}" target="_blank" style="display: inline-block; background-color: #007bff; color: #fff; padding: 10px 20px; border-radius: 5px; text-decoration: none;">Confirm Email Address</a>
+                <a href="${process.env.BASE_URL}/auth/complete-registration?email=${email}" target="_blank" style="display: inline-block; background-color: #007bff; color: #fff; padding: 10px 20px; border-radius: 5px; text-decoration: none;">Confirm Email</a>
                 <br><br>
                 <p>Alternatively, you can confirm your email address by copying and pasting the following link into your web browser:</p>
 
-                <p><a href="http://localhost:3000/confirm_email?email=${email}">http://localhost:3000/confirm_email?email=${email}</a></p>
+                <p><a href="${process.env.BASE_URL}/auth/complete-registration?email=${email}">http://yourwebsite.com/auth/complete-registration?email=${email}</a></p>
                         
                 <p>Please note: This confirmation link will expire in 48 hours.</p>
                         
@@ -77,6 +78,58 @@ router.post('/register', async (req, res) => {
         res.status(500).send('Server Error');
     }
 });
+
+// Render the view for user to select username and password as a part of the email confirmation step
+router.get('/complete-registration', function(req, res, next) {
+    console.log("Calling the /complete-registration route")
+    // extract the email parameter from the query string
+    const email = req.query.email;
+  
+    if (!email) {
+      // handle the case where email parameter is missing
+      return res.status(400).send('Email parameter is missing');
+    }
+  
+    // render a view or do something else with the email parameter
+    res.render('complete-registration', { email: email });
+  });
+
+// Handle username and password creation part of new user registration (separate step as a part of email confirmation step)
+router.post('/complete-registration', [
+    check('username').isAlphanumeric().isLength({ min: 6, max: 12 }),
+    check('password').isStrongPassword(),
+    check('confirmPassword').custom((value, { req }) => {
+        if (value !== req.body.password) {
+            throw new Error('Password confirmation does not match password');
+        }
+        return true;
+    })
+], async (req, res, next) => {
+    
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.render('complete_registration', { errors: errors.array() });
+    }
+    
+    const { username, password, confirmPassword } = req.body;
+    
+    // Query the database to find the user (assuming email is passed as a hidden field in the form)
+    const user = await User.findOne({ email: req.body.email });
+    if (!user) {
+        // handle user not found
+        return res.render('complete_registration', { error: 'User not found.' });
+    }
+    
+    // Update the user document
+    user.username = username;
+    user.password = password;  // Your User model should hash the password before saving
+    await user.save();
+    
+    // Redirect to dashboard
+    res.redirect('/dashboard');
+});
+
+  
 
 passport.use(
   "local-login",
