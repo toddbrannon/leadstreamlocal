@@ -5,14 +5,15 @@ const Schema = mongoose.Schema;
 require('dotenv').config(); // Load environment variables from .env file
 
 // Define the user schema
-const UserSchema = new Schema({
-  first_name: String,
-  last_name: String,
-  company_name: String,
-  title: String,
-  email_address: String,
-  mobile_number: String,
-  dateAdded: { type: Date, default: Date.now }
+const UserSchema = new mongoose.Schema({
+    firstName: String,
+    lastName: String,
+    companyName: String,
+    title: String,
+    email: { type: String, unique: true },
+    phone: String,
+    password: String,
+    registration_complete: { type: Boolean, default: false }
 });
 
 UserSchema.plugin(passportLocalMongoose);

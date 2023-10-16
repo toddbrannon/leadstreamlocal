@@ -5,49 +5,77 @@ const LocalStrategy = require('passport-local');
 const crypto = require('crypto');
 const User = require('../models/user.js');
 const app = express();
+const nodemailer = require('nodemailer');
 const router = express.Router();
 
-// Parse JSON request bodies
-app.use(bodyParser.json());
 
 // Parse URL-encoded request bodies
 app.use(bodyParser.urlencoded({ extended: true }));
 
 router.post('/register', async (req, res) => {
-  const { email_address, username, password } = req.body;
+    console.log('Received request to /register');
+    const {
+        firstName, lastName, companyName, title, email, phone
+    } = req.body;
   
-  try {
+    try {
+        // Validate required fields
+        if (!firstName || !lastName || !companyName || !title || !email || !phone) {
+            return res.status(400).send('Missing required fields');
+        }
 
-    // if (!email_address || !username || !password) {
-    //   return res.status(400).send('Missing required fields');
-    // }
+        // Create a new user
+        const user = new User({
+            firstName, lastName, companyName, title, email, phone
+        });
+        console.log("Saving new user")
+        await user.save();
 
-    console.log("Email: " + email_address);
-    console.log("Username: " + username);
-    console.log("Password: " + password);
+        // Create transporter
+        const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: process.env.EMAIL_USERNAME, // Your Gmail username
+                pass: process.env.APP_SPEC_PASSWORD // Your Gmail password
+            }
+        });
 
-    if (!email_address) {
-      console.log('Missing email_address field');
-      return res.status(400).send('Missing email_address field');
+        // Send validation email
+        const mailOptions = {
+            from: process.env.EMAIL_USERNAME,
+            to: email,
+            subject: 'Please Confirm Your Email Address',
+            html: `
+                <p>Hi ${firstName} ${lastName}!</p>
+                <p>Thank you for signing up at Lead Stream Local. To complete your registration and enjoy all the features, please confirm your email address by clicking the button below:</p>
+        
+                <a href="http://localhost:3000/confirm_email?email=${email}" target="_blank" style="display: inline-block; background-color: #007bff; color: #fff; padding: 10px 20px; border-radius: 5px; text-decoration: none;">Confirm Email Address</a>
+                <br><br>
+                <p>Alternatively, you can confirm your email address by copying and pasting the following link into your web browser:</p>
+
+                <p><a href="http://localhost:3000/confirm_email?email=${email}">http://localhost:3000/confirm_email?email=${email}</a></p>
+                        
+                <p>Please note: This confirmation link will expire in 48 hours.</p>
+                        
+                <p>If you have any questions or run into any issues, feel free to reach out to our support team at support@leadstreamlocal.com.</p>
+            `
+        };
+        
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                console.log(error);
+            } else {
+                console.log('Email sent: ' + info.response);
+            }
+        });
+
+        // Render the email_sent view
+        res.render('email_sent', { isLoggedIn: res.locals.isLoggedIn, email: email });
+    } 
+    catch (error) {
+        console.error(error);
+        res.status(500).send('Server Error');
     }
-    if (!username) {
-      console.log('Missing username field');
-      return res.status(400).send('Missing username field');
-    }
-    if (!password) {
-      console.log('Missing password field');
-      return res.status(400).send('Missing password field');
-    }
-
-    // Create a new user with a hardcoded ID for testing
-    const user = new User({ email_address, username });
-    await user.setPassword(password);
-    await user.save();
-    res.send('User registered successfully');
-  } catch (error) {
-    console.log(error);
-    res.status(500).send('Error registering user');
-  }
 });
 
 passport.use(
