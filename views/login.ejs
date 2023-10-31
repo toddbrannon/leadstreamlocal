@@ -1,0 +1,43 @@
+\<%- include ('partials/header', { isLoggedIn: isLoggedIn, isAdmin: isAdmin }) -%>
+
+<% if (isLoggedIn) { %>
+  <p>You are already logged in.</p>
+<% } else { %>
+<div class="login-container">
+    <!-- Login with Facebook button -->
+    <div class="social-btn fb-btn">
+      <span class="icon fb-icon"></span>  <!-- Assuming you have a Facebook icon -->
+      Login with Facebook
+    </div>
+    
+    <!-- Login with Google button -->
+    <div class="social-btn google-btn">
+      <span class="icon google-icon"></span>  <!-- You'll need a Google icon here -->
+      Login with Google
+    </div>
+    
+    <!-- OR separator -->
+    <div class="separator">OR</div>
+    <form class="login-form" method="post" action="/login/password">
+        <h3 class="form-title">Login to Your Account</h3>
+
+        <div class="input-group">
+            <i class="ri-user-fill icon"></i>
+            <input type="text" class="form-input" id="username" name="username" placeholder="Username" required>
+        </div>
+        
+        <div class="input-group">
+            <i class="ri-lock-fill icon"></i>
+            <input type="password" class="form-input" id="password" name="password" placeholder="Password" required>
+        </div>
+        <a href="#" class="forgot-link">Forgot Username/Password?</a>
+        <button type="submit" class="submit-btn">Login</button>
+        <div class="no-account-yet">
+          Don't have a free account yet? <a href="/signup" class="sign-up-link">Sign Up</a>
+        </div>
+        <!-- <a href="/signup" class="forgot-link"> Sign Up</a> -->
+        
+</div>
+
+<% } %>
+<%- include('partials/footer') %>

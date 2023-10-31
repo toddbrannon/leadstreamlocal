@@ -3,6 +3,11 @@ html, body {
     height: 100%;
 }
 
+body {
+    font-family: 'League Spartan', sans-serif;
+    background-color: #f4f4f4;
+}
+
 .features-section .feature-box h2 {
     font-family: 'League Spartan', sans-serif;
     font-size: 1.65em!important;
@@ -272,6 +277,148 @@ body, .navbar, .masthead {
 .features-top p {
     font-family: 'League Spartan', sans-serif;
     font-size: 1.5em;
+}
+
+/* Login page styling */
+
+/* General Styles */
+
+
+.login-container {
+    width: 100%;
+    max-width: 400px;
+    margin: 11rem auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+    border-radius: 8px;
+}
+
+.form-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 10px 40px 10px 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+.form-input:focus {
+    border-color: #33D251;
+    outline: none;;
+    box-shadow: 0 0 5px rgba(51, 210, 81, 0.5);
+}
+
+.form-input:hover {
+    border-color: #33D251;
+}
+
+.icon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #888;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #33D251; /* Adjust the color to match your brand */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #45a049; /* Slightly darker shade of green */
+}
+
+.forgot-link {
+    display: block;
+    padding-bottom: .5rem;
+    margin-top: 15px;
+    text-align: center;
+    color: #000;
+    text-decoration: underline;
+    font-size: 12px;
+}
+
+.forgot-link:hover {
+    text-decoration: underline;
+}
+
+.no-account-yet {
+    padding-top: 3rem;
+    padding-bottom: 1.5rem;
+    text-align: center;  /* Optional: If you want to center-align the text and link */
+}
+
+.sign-up-link {
+    text-decoration: underline;
+}
+
+/* Common styling for both social buttons */
+.social-btn {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #FFF;  /* White text */
+}
+
+.fb-btn {
+    background-color: #1877F2;  /* Facebook's blue color */
+    display: block;
+}
+
+.google-btn {
+    background-color: #DB4437;  /* Google's red color */
+}
+
+.icon {
+    margin-right: 10px;  /* Adds some spacing between the icon and the text */
+}
+
+/* You might already have styles for .fb-icon, so only add google-icon */
+.google-icon {
+    /* Add styles or background-image for Google's icon */
+}
+
+.separator {
+    text-align: center;
+    margin: 10px 0;
+    color: #888;  /* Grayish color for the text */
+    font-weight: bold;
+}
+
+/* Add a subtle line on either side of 'OR' for visual appeal */
+.separator::before, .separator::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #ccc;
+    margin: 0 10px 0 0;  /* Spacing to the right of the line */
+}
+.separator::after {
+    margin: 0 0 0 10px;  /* Spacing to the left of the line */
 }
 
 

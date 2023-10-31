@@ -5,6 +5,8 @@ const session = require('express-session');
 const path = require('path');
 const index_routes = require('./routes/index_router');  // Import the routes
 const auth_routes = require('./routes/auth_router');  // Import the auth routes
+const notificationRoutes = require('./routes/notification_router');
+const passport = require('passport');
 require('dotenv').config();
 
 const mongoose = require('mongoose');
@@ -47,6 +49,19 @@ app.use(session({
     saveUninitialized: false
   }));
 
+// Initialize Passport and session
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use(passport.authenticate('session'));
+app.use(function(req, res, next) {
+  var msgs = req.session.messages || [];
+  res.locals.messages = msgs;
+  res.locals.hasMessages = !! msgs.length;
+  req.session.messages = [];
+  next();
+});
+
 app.use((req, res, next) => {
     res.locals.currentRoute = req.originalUrl;
     next();
@@ -54,6 +69,7 @@ app.use((req, res, next) => {
 
 app.use('/', index_routes);  // Integrate the routes
 app.use('/auth', auth_routes);  // Integrate the auth routes
+// app.use('/notifications', notificationRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

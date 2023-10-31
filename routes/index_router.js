@@ -21,6 +21,16 @@ router.post('/signup', (req, res) => {
     // TODO: Handle sign-up, send validation email
 });
 
+// Set up login page route
+router.get('/login', (req, res, next) => {
+    console.log("Accessing the login route");
+    res.render('login', { 
+      username: req.user ? req.user.username : null,
+      isLoggedIn: req.isAuthenticated(),
+      isAdmin: req.user ? req.user.permission === 'admin' : false
+    });
+});
+
 // Handle email validation
 router.get('/validate-email/:token', (req, res) => {
     // TODO: Validate email, render phone number validation page
