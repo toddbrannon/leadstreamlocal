@@ -387,12 +387,38 @@ body, .navbar, .masthead {
 
 .fb-btn {
     background-color: #1877F2;  /* Facebook's blue color */
-    display: block;
 }
 
 .google-btn {
     background-color: #DB4437;  /* Google's red color */
 }
+
+.btn-google {
+    color: white;
+    font-size: 20px;
+    display: flex!important;
+    align-items: center!important;
+    justify-content: center!important;
+}
+
+.btn-google span {
+    display: inline-block;
+}
+
+.submit-btn.google-btn {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    padding-left: 0; /* Adjust this value based on the icon size */
+}
+
+.submit-btn.google-btn .bi-google {
+    position: absolute;
+    left: 16px; /* Adjust this value as desired */
+    top: 50%;
+    transform: translateY(-50%);
+}
+
 
 .icon {
     margin-right: 10px;  /* Adds some spacing between the icon and the text */
@@ -403,23 +429,52 @@ body, .navbar, .masthead {
     /* Add styles or background-image for Google's icon */
 }
 
+/* Add a subtle line on either side of 'OR' for visual appeal */
+
 .separator {
     text-align: center;
-    margin: 10px 0;
-    color: #888;  /* Grayish color for the text */
-    font-weight: bold;
+    margin: 25px 0;
+    color: #888;
+    font-weight: 500;
+    position: relative;
+    z-index: 1;
+    background: #fff;
+    padding: 0 10px;  /* Reduce the horizontal padding */
 }
 
-/* Add a subtle line on either side of 'OR' for visual appeal */
 .separator::before, .separator::after {
     content: '';
-    flex: 1;
-    border-bottom: 1px solid #ccc;
-    margin: 0 10px 0 0;  /* Spacing to the right of the line */
+    position: absolute;
+    top: 50%;
+    width: 130px;
+    height: 1px;
+    background: #e0e0e0;
+    transform: translateY(-50%);
 }
+
+.separator::before {
+    left: 0px;  /* Adjusted the position left of the text */
+}
+
 .separator::after {
-    margin: 0 0 0 10px;  /* Spacing to the left of the line */
+    right: 0px;  /* Adjusted the position right of the text */
 }
+
+.bi {
+    color: white;       /* Changes the icon color to red */
+    font-size: 18px;  /* Sets the icon size to 24 pixels */
+}
+
+.bi-google{
+    padding-left: 20px;
+    padding-right: 24px;
+}
+
+.submit-btn {
+    font-size: 20px;
+}
+
+
 
 
 

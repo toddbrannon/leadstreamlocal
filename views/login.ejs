@@ -5,19 +5,23 @@
 <% } else { %>
 <div class="login-container">
     <!-- Login with Facebook button -->
-    <div class="social-btn fb-btn">
-      <span class="icon fb-icon"></span>  <!-- Assuming you have a Facebook icon -->
-      Login with Facebook
-    </div>
+  <!-- <div class="social-btn fb-btn">
+    <span class="icon fb-icon"></span>
+    Login with Facebook
+  </div> -->
+
+  <!-- Login with Google button -->
+  <!-- <div class="social-btn google-btn">
+    <button class="btn btn-google">
+      <i class="bi bi-google"></i><span>Login with Google</span>
+    </button>
     
-    <!-- Login with Google button -->
-    <div class="social-btn google-btn">
-      <span class="icon google-icon"></span>  <!-- You'll need a Google icon here -->
-      Login with Google
-    </div>
-    
-    <!-- OR separator -->
-    <div class="separator">OR</div>
+  </div> -->
+  <button class="submit-btn google-btn"> <i class="bi bi-google"></i>Login with Google</button>
+  
+
+  <!-- OR separator -->
+  <div class="separator">OR</div>
     <form class="login-form" method="post" action="/login/password">
         <h3 class="form-title">Login to Your Account</h3>
 
